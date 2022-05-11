@@ -31,16 +31,16 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.RightArrow))
+        if (Input.GetKey(KeyCode.RightArrow))
         {
             dir = right;
         }
-        else if (Input.GetKeyDown(KeyCode.LeftArrow))
+        else if (Input.GetKey(KeyCode.LeftArrow))
         {
             dir = left;
         }
         else {
-            //dir = Vector2.zero;
+            dir = Vector2.zero;
         }
 
         if (Input.GetKey(KeyCode.UpArrow))
@@ -58,26 +58,29 @@ public class Player : MonoBehaviour
     }
 
     void PlayerAction(Vector2 direction) {
-        Debug.Log("Action!");
+        //Debug.Log("Action!");
         if (direction == right && Mathf.Abs(playerRigid.velocity.x) < speed)
         {
+            Debug.Log("Right");
             playerRigid.AddForce(right * power);
         }
         else if (direction == left && Mathf.Abs(playerRigid.velocity.x) < speed)
         {
+            Debug.Log("Left");
             playerRigid.AddForce(left * power);
         }
-        //else if (direction == Vector2.zero)
-        //{
-        //    playerRigid.velocity = Vector2.zero;
-        //}
+        else if (direction == Vector2.zero)
+        {
+            playerRigid.velocity = Vector2.zero;
+        }
         else { 
         
         }
 
         if (direction == jump) {
             nowVec = playerRigid.velocity;
-            jumppow = nowVec + jump; ;
+            jumppow = nowVec + jump;
+            Debug.Log("Jump");
             playerRigid.AddForce(jumppow.normalized * power);
         }
     }
