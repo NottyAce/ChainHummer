@@ -137,6 +137,7 @@ GameObject:
   - component: {fileID: 219612812}
   - component: {fileID: 219612814}
   - component: {fileID: 219612813}
+  - component: {fileID: 219612815}
   m_Layer: 0
   m_Name: Hummer
   m_TagString: Untagged
@@ -258,14 +259,14 @@ DistanceJoint2D:
   m_Enabled: 1
   serializedVersion: 4
   m_EnableCollision: 0
-  m_ConnectedRigidBody: {fileID: 2137747026}
+  m_ConnectedRigidBody: {fileID: 1453435554}
   m_BreakForce: Infinity
   m_BreakTorque: Infinity
   m_AutoConfigureConnectedAnchor: 0
   m_Anchor: {x: 0, y: 0}
   m_ConnectedAnchor: {x: 0, y: 0}
   m_AutoConfigureDistance: 1
-  m_Distance: 7
+  m_Distance: 8.009994
   m_MaxDistanceOnly: 1
 --- !u!233 &219612814
 HingeJoint2D:
@@ -291,6 +292,20 @@ HingeJoint2D:
   m_AngleLimits:
     m_LowerAngle: 0
     m_UpperAngle: 359
+--- !u!114 &219612815
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 219612808}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 15781f8ed9039c14983b13cfbf36bf16, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ChainHummer: {fileID: 219612808}
+  Player: {fileID: 1453435550}
 --- !u!1 &249579360
 GameObject:
   m_ObjectHideFlags: 0
@@ -511,6 +526,7 @@ GameObject:
   - component: {fileID: 519420031}
   - component: {fileID: 519420029}
   - component: {fileID: 519420033}
+  - component: {fileID: 519420034}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -596,6 +612,29 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c97efac7ced78d446b9b76ed38f23484, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  MainCamera: {fileID: 519420031}
+  Player: {fileID: 1453435550}
+--- !u!50 &519420034
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 519420028}
+  m_BodyType: 1
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!1 &696609236
 GameObject:
   m_ObjectHideFlags: 0
@@ -1319,6 +1358,8 @@ GameObject:
   - component: {fileID: 1453435554}
   - component: {fileID: 1453435553}
   - component: {fileID: 1453435555}
+  - component: {fileID: 1453435556}
+  - component: {fileID: 1453435557}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -1455,8 +1496,51 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 1453435550}
   chainHummer: {fileID: 249579360}
-  power: 3
-  speed: 5
+  power: 8
+  speed: 10
+--- !u!233 &1453435556
+HingeJoint2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1453435550}
+  m_Enabled: 1
+  serializedVersion: 4
+  m_EnableCollision: 0
+  m_ConnectedRigidBody: {fileID: 2137747026}
+  m_BreakForce: Infinity
+  m_BreakTorque: Infinity
+  m_AutoConfigureConnectedAnchor: 1
+  m_Anchor: {x: 0, y: 0}
+  m_ConnectedAnchor: {x: -0.7999997, y: 1.9999995}
+  m_UseMotor: 0
+  m_Motor:
+    m_MotorSpeed: 0
+    m_MaximumMotorForce: 10000
+  m_UseLimits: 0
+  m_AngleLimits:
+    m_LowerAngle: 0
+    m_UpperAngle: 359
+--- !u!232 &1453435557
+DistanceJoint2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1453435550}
+  m_Enabled: 0
+  serializedVersion: 4
+  m_EnableCollision: 0
+  m_ConnectedRigidBody: {fileID: 219612812}
+  m_BreakForce: Infinity
+  m_BreakTorque: Infinity
+  m_AutoConfigureConnectedAnchor: 0
+  m_Anchor: {x: 0, y: 0}
+  m_ConnectedAnchor: {x: 0, y: 0}
+  m_AutoConfigureDistance: 1
+  m_Distance: 8.009994
+  m_MaxDistanceOnly: 0
 --- !u!1 &1901904926
 GameObject:
   m_ObjectHideFlags: 0
