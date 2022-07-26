@@ -9,17 +9,12 @@ public class Player : MonoBehaviour
     [SerializeField]
     GameObject chainHummer;
     [SerializeField]
-    int power;
+    int jumpPower;
     [SerializeField]
     int speed;
     Rigidbody2D playerRigid;
     Rigidbody2D hummerRigid;
-    Vector2 right = new Vector2(1,0);
-    Vector2 left = new Vector2(-1, 0);
-    Vector2 jump = new Vector2(0,1);
-    Vector2 dir = new Vector2(0,0);
-    Vector2 nowVec = new Vector2(0,0);
-    Vector2 jumppow = new Vector2(0,0);
+    float horizontal;
 
     // Start is called before the first frame update
     void Start()
@@ -31,57 +26,24 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKey(KeyCode.RightArrow))
-        {
-            dir = right;
-        }
-        else if (Input.GetKey(KeyCode.LeftArrow))
-        {
-            dir = left;
-        }
-        else {
-            dir = Vector2.zero;
+        horizontal = Input.GetAxis("Horizontal");
+        Run(horizontal);
+        if (Input.GetKeyDown(KeyCode.UpArrow) && !(playerRigid.velocity.y < -0.5f)) {
+            Jump();
         }
 
-        if (Input.GetKey(KeyCode.UpArrow))
-        {
-            dir = jump;
-        }
-        else if (Input.GetKeyUp(KeyCode.UpArrow))
-        {
-            //dir = Vector2.zero;
-        }
-        else { 
-        
-        }
-        PlayerAction(dir);
+    }
+
+    private void Run(float horizontal)
+    {
+        playerRigid.velocity = new Vector2(horizontal, playerRigid.velocity.y);
+    }
+
+    private void Jump() {
+        playerRigid.AddForce(Vector2.up * jumpPower,ForceMode2D.Impulse);
     }
 
     void PlayerAction(Vector2 direction) {
-        //Debug.Log("Action!");
-        if (direction == right && Mathf.Abs(playerRigid.velocity.x) < speed)
-        {
-            Debug.Log("Right");
-            playerRigid.AddForce(right * power);
-        }
-        else if (direction == left && Mathf.Abs(playerRigid.velocity.x) < speed)
-        {
-            Debug.Log("Left");
-            playerRigid.AddForce(left * power);
-        }
-        else if (direction == Vector2.zero)
-        {
-            playerRigid.velocity = Vector2.zero;
-        }
-        else { 
         
-        }
-
-        if (direction == jump) {
-            nowVec = playerRigid.velocity;
-            jumppow = nowVec + jump;
-            Debug.Log("Jump");
-            playerRigid.AddForce(jumppow.normalized * power);
-        }
     }
 }
